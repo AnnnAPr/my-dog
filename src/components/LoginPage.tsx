@@ -18,11 +18,11 @@ const LoginPage: React.FC = () => {
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 
-	const handleNameChange = (e: any) => {
+	const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setName(e.target.value);
 	}
 
-	const handleEmailChange = (e: any) => {
+	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.target.value);
 	}
 
@@ -32,8 +32,7 @@ const LoginPage: React.FC = () => {
     try {
       const response = await fetch(`${baseUrl}/auth/login`, {
         method: 'POST',
-				credentials: "same-origin",
-        // body: JSON.stringify(formData),
+				credentials: "include",
 				body: JSON.stringify({
 					name: name,
 					email: email
@@ -45,15 +44,6 @@ const LoginPage: React.FC = () => {
 
 			console.log("response: ", response)
 
-      // if (!response.ok) {
-      //   const errorData = await response.json();
-      //   throw new Error(errorData.message || 'Login failed');
-      // }
-
-      const data = await response.json();
-      console.log('Login successful:', data);
-      // Handle successful login (e.g., redirect, store token)
-
 			navigate('/home');
     } catch (err: any) {
 			console.log("error: ", err)
@@ -63,13 +53,6 @@ const LoginPage: React.FC = () => {
 
 	return (
 		<Container maxWidth="xs" 
-			// sx={{
-			// 	backgroundImage: "url('/images/dogLover.png')",
-			// 	backgroundRepeat: "no-repeat",
-			// 	backgroundSize: "cover",
-			// 	height: "100vh",
-			// 	width: "100vw",
-			// }}
 		>
 			<Paper elevation={10} sx={{ padding: 2, marginTop: 8 }}>
 				<Avatar sx={{ 
@@ -106,16 +89,12 @@ const LoginPage: React.FC = () => {
 						sx={{mb: 2}}
 						onChange={handleEmailChange}
 					/>
-					<FormControlLabel 
-						control={<Checkbox value='remember' color='primary'/>} 
-						label='Remember me'
-					/>
+				
 					<Button 
 						type='submit' 
 						color='primary' 
 						variant='contained' 
 						fullWidth sx={{mt: 1}}
-						// href='/home'
 					>
 						Sign In
 					</Button>
