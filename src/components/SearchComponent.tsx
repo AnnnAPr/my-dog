@@ -6,6 +6,7 @@ import { Box, Button, Card, CardContent, CardMedia, Grid, List, ListItem, ListIt
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-alpine.css';
+// import DogCard from './DogCard.tsx';
 
 // import Card from "react-bootstrap/Card";
 // import Stack from "react-bootstrap/Stack";
@@ -28,27 +29,8 @@ interface Dog {
 	breed: string
 }
 
-const SearchComponent: React.FC<SearchProps> = ({ placeholder = 'Search' }) => {
+const SearchComponent: React.FC<SearchProps> = ({ placeholder = 'Search by dog id' }) => {
 
-  const [columnDefs] = useState([
-    { headerName: 'Name', 
-			field: 'name' 
-		},
-    { headerName: 'Picture', 
-			field: 'img',
-			flex: 1,
-			// cellRenderer: ImageRenderer,
-		},
-    { headerName: 'Age', 
-			field: 'age' 
-		},
-		{ headerName: 'Breed', 
-			field: 'breed' 
-		},
-		{ headerName: 'Zip Code', 
-			field: 'zip_code' 
-		}
-  ]);
   const [searchText, setSearchText] = useState('');
   const gridRef = useRef<AgGridReact>(null);
   const [rowData, setRowData] = useState<Dog[]>([]);
@@ -139,29 +121,33 @@ const fetchData = async (searchText = '', page = 1, pageSize = 25) => {
 
   return (
 		<Box sx={{mt: 2, border: '1px solid red', height: '50px'}}>
-			<TextField
-				label={placeholder}
-				variant="outlined"
-				size="small"
-				value={searchText}
-				onChange={handleInputChange}
-				onKeyDown={handleKeyDown}
-				slotProps={{
-					input: {
-						endAdornment: (
-							<IconButton onClick={handleSearch} aria-label="search">
-									<SearchIcon />
-							</IconButton>
-						),
-					}
-				}}
-    	    />
-			<Button variant="contained" color="primary" onClick={handleSearch}>
+			<Box sx={{display: 'flex', justifyContent: 'center'}}>
+				<TextField
+					label={placeholder}
+					variant="outlined"
+					size="small"
+					value={searchText}
+					onChange={handleInputChange}
+					onKeyDown={handleKeyDown}
+					slotProps={{
+						input: {
+							endAdornment: (
+								<IconButton onClick={handleSearch} aria-label="search">
+										<SearchIcon />
+								</IconButton>
+							),
+						}
+					}}
+					sx={{ width: '70%' }}
+				/>
+				<Button variant="contained" color="primary" onClick={handleSearch} sx={{ml: 2}}>
 					Search
-			</Button>
+				</Button>
+			</Box>
 
-			<Box>
+			<Box sx={{display: 'flex', justifyContent: 'center'}}>
 				{rowData.map((dog) => (
+					// <DogCard dog={dog} />
 					<Card sx={{ maxWidth: 345, mb: 2 }}>
 						<CardMedia 
 								sx={{ height: 400 }}

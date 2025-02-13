@@ -1,14 +1,7 @@
-import { Avatar, Box, Container, FormControlLabel, Paper, TextField, Typography, Checkbox, Button } from '@mui/material';
+import { Avatar, Box, Container, Paper, TextField, Typography, Button } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import React, { useState } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
-import HomePage from './HomePage.tsx';
 import { useNavigate } from 'react-router-dom';
-
-// interface FormData {
-//   name: string;
-//   email: string;
-// }
 
 const LoginPage: React.FC = () => {
 
@@ -42,18 +35,14 @@ const LoginPage: React.FC = () => {
 				}
       });
 
-			console.log("response: ", response)
-
 			navigate('/home');
     } catch (err: any) {
 			console.log("error: ", err)
-      // setError(err.message);
     }
   };
 
 	return (
-		<Container maxWidth="xs" 
-		>
+		<Container maxWidth="xs" >
 			<Paper elevation={10} sx={{ padding: 2, marginTop: 8 }}>
 				<Avatar sx={{ 
 					mx: 'auto', 
@@ -89,7 +78,6 @@ const LoginPage: React.FC = () => {
 						sx={{mb: 2}}
 						onChange={handleEmailChange}
 					/>
-				
 					<Button 
 						type='submit' 
 						color='primary' 
