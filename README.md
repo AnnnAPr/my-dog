@@ -1,3 +1,26 @@
+Welcome to finder dog "my-dog" application.
+
+# To run it locally
+
+- Clone directory locally from github repository.
+- Run command `npm install` to install all dependencies.
+- Run command `npm start` to run application. 
+
+
+# The application features:
+
+- The first page of app is the 'Sign in" page where user is required enter Name and Email to be authenticated. The "Sign in" button is disabled until required fields will be provided.
+- After authentication user will be redirected to "Home" page where they could see paginated list of the available dogs. Each dog is displayed as a card with picture of the dog, name and other information.
+- Number of dogs per page is 25. User could click to any page to retrieve information about the next 25 dogs.
+- For the user convenience paginated pages were added at the top and bottom. Also page has "Go to bottom" and "Go to Top" buttons for easier moving.
+- The dogs on the page are sorted by breed in the ascending alphabetical order by default. User could change the order to descending/ascending as well. Please note the dogs on the 1st page have the same breed, so sorting won't be noticeable. Please use the 2nd page to try sort option.
+- The dogs on the page could be filtered by breed. The "filter" button is disabled if all dogs on the page have the same breed. Please use the 2nd page to see "filter" option. The "filter" bar also has tooltip to let user know why the "filtering" is disabled. There is the separate button to reset filter result. 
+- There is the link to "Search" page which redirect user to Search component where user could search dog by dog id. The "Search" page will be opened in the new tab. User could click to the "Search" button, to the "Search" icon or hit "Enter" key to initiate search. 
+- Both "Home" and "Search" pages have "Sign out" button. Clicking on it will bring user to "Sign in" page.
+
+
+****** Below is the original info provided when React app was created. ******
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
