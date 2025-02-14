@@ -1,7 +1,7 @@
 import { List } from "@mui/icons-material"
 import React from "react"
 import { Card, CardMedia, CardContent, Typography, ListItem, ListItemText } from "@mui/material"
-import { Dog } from './common.ts';
+import { Dog } from './common';
 
 interface DogCardProps {
   dog: Dog;

@@ -19,7 +19,7 @@ import {
 	Tooltip 
 } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { baseUrl } from "./common.ts";
+import { baseUrl } from "./common";
 // import DogCard from "./DogCard.tsx";
 
 
@@ -54,7 +54,7 @@ const AllDogs: React.FC = () => {
 			setIsAscending(!isAscending);
 		};
 
-		const fetchData = async (page) => {
+		const fetchData = async (page: number) => {
 			try {
 				const idsResponse = await fetch(`${baseUrl}/dogs/search?size=25&from=${(page - 1) * 25}`, {
 					method: 'GET',
@@ -76,14 +76,14 @@ const AllDogs: React.FC = () => {
 					body: JSON.stringify(ids)
 				})
 				const currentDogsData = await currentDogs.json();
-				const sortedDogs = currentDogsData.sort((a, b) => a.breed - b.breed);
+				const sortedDogs = currentDogsData.sort((a: { breed: string }, b: { breed: string }) => a.breed.localeCompare(b.breed));
 				setDogs(sortedDogs);
 			} catch (error) {	
 				console.error('Error fetching data:', error);
 			}
 		};
 
-		const handleChangePage = (event, newPage) => {
+		const handleChangePage = (event: React.ChangeEvent<unknown>, newPage: number) => {
 			setPage(newPage);
 			fetchData(newPage);
 			setIsAscending(true);
@@ -103,24 +103,24 @@ const AllDogs: React.FC = () => {
 		const scrollToBottom = () => {
 			window.scrollTo({
 				top: document.documentElement.scrollHeight,
-				behavior: 'instant'
+				behavior: 'auto'
 			});
 		};
 
 		const scrollToTop = () => {
 			window.scrollTo({
 				top: 0,
-				behavior: 'instant'
+				behavior: 'auto'
 			});
 		};
 
 		useEffect(() => {
-        fetchData(page);
-    }, []);
+      fetchData(page);
+    }, [page]);
 
 		useEffect(() => {
 			getBreeds();
-		}, [dogs]);
+		}, [dogs, getBreeds]);
 
 
     return (
@@ -180,7 +180,7 @@ const AllDogs: React.FC = () => {
 						<Pagination
 							count={totalDogs/25}
 							page={page}
-							onChange={handleChangePage}
+							onChange={(event, page) => handleChangePage(event, page)}
 							variant="text"
 							shape="rounded"
 							sx={{height: '50px'}}

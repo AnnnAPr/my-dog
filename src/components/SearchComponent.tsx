@@ -1,10 +1,10 @@
-import React, { useState, ChangeEvent, useRef, useEffect } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Button, Card, CardContent, CardMedia, Grid, List, ListItem, ListItemText, Pagination, Typography } from '@mui/material';
-import { Dog } from './common.ts';
-import SignOut from './SignOut.tsx';
+import { Box, Button, Card, CardContent, CardMedia, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Dog } from './common';
+import SignOut from './SignOut';
 
 
 interface SearchProps {
@@ -46,7 +46,7 @@ const SearchComponent: React.FC<SearchProps> = ({ placeholder = 'Search by dog i
     }
   };
 
-	const handleSearch = async (event) => {
+	const handleSearch = async (event: React.FormEvent) => {
 		event.preventDefault();
     fetchData(searchText);
   };

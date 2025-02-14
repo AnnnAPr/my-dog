@@ -2,7 +2,7 @@ import { Avatar, Box, Container, Paper, TextField, Typography, Button } from '@m
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { baseUrl} from './common.ts';
+import { baseUrl} from './common';
 
 const LoginPage: React.FC = () => {
 
@@ -27,7 +27,7 @@ const LoginPage: React.FC = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch(`${baseUrl}/auth/login`, {
+      await fetch(`${baseUrl}/auth/login`, {
         method: 'POST',
 				credentials: "include",
 				body: JSON.stringify({

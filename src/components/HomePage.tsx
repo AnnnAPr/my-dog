@@ -1,7 +1,7 @@
 import React from "react";
-import AllDogs from "./AllDogs.tsx";
-import { Box, Button } from "@mui/material";
-import SignOut from "./SignOut.tsx";
+import AllDogs from "./AllDogs";
+import { Box } from "@mui/material";
+import SignOut from "./SignOut";
 
 
 const HomePage: React.FC = () => {
