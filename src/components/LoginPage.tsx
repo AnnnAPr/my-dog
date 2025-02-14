@@ -2,21 +2,25 @@ import { Avatar, Box, Container, Paper, TextField, Typography, Button } from '@m
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { baseUrl} from './common.ts';
 
 const LoginPage: React.FC = () => {
 
-	const baseUrl = ' https://frontend-take-home-service.fetch.com'
+	// const baseUrl = ' https://frontend-take-home-service.fetch.com'
 	const navigate = useNavigate();
-
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
+	const [isNameEntered, setIsNameEntered] = useState(false);
+	const [isEmailEntered, setIsEmailEntered] = useState(false);
 
 	const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setName(e.target.value);
+		setIsNameEntered(!isNameEntered);
 	}
 
 	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.target.value);
+		setIsEmailEntered(!isEmailEntered);
 	}
 
 	const handleOnSubmit = async (e: any) => {
@@ -62,7 +66,7 @@ const LoginPage: React.FC = () => {
 					sx={{mt: 1}}
 				>
 					<TextField 
-						placeholder="Enter name" 
+						placeholder="required" 
 						label="Name" 
 						required 
 						fullWidth 
@@ -71,7 +75,7 @@ const LoginPage: React.FC = () => {
 						onChange={handleNameChange}
 					/>
 					<TextField 
-						placeholder="Enter email" 
+						placeholder="required" 
 						label="Email" 
 						required 
 						fullWidth 
@@ -83,6 +87,7 @@ const LoginPage: React.FC = () => {
 						color='primary' 
 						variant='contained' 
 						fullWidth sx={{mt: 1}}
+						disabled={!isNameEntered || !isEmailEntered}
 					>
 						Sign In
 					</Button>

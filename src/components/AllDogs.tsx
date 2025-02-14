@@ -19,6 +19,8 @@ import {
 	Tooltip 
 } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import { baseUrl } from "./common.ts";
+// import DogCard from "./DogCard.tsx";
 
 
 
@@ -27,8 +29,7 @@ const AllDogs: React.FC = () => {
 		const totalDogs = 10000;
 		const dogsPerPage = 25;
 
-    const baseUrl = ' https://frontend-take-home-service.fetch.com';
-
+    // State variables
 		const [dogs, setDogs] = useState<any[]>([]);
 		const [filterBreed, setFilterBreed] = useState('');
 		const [listOfBreeds, setListOfBreeds] = useState<string[]>([]);
@@ -88,15 +89,7 @@ const AllDogs: React.FC = () => {
 			setIsAscending(true);
 		};
 
-		useEffect(() => {
-        fetchData(page);
-    }, []);
-
-		useEffect(() => {
-			getBreeds();
-		}, [dogs]);
-
-		const handleChange = (event: SelectChangeEvent) => {
+		const handleChangeBreed = (event: SelectChangeEvent) => {
 			setFilterBreed(event.target.value);
 			const filteredDogs = dogs.filter((dog) => dog.breed === event.target.value);
 			setDogs(filteredDogs);
@@ -120,6 +113,14 @@ const AllDogs: React.FC = () => {
 				behavior: 'instant'
 			});
 		};
+
+		useEffect(() => {
+        fetchData(page);
+    }, []);
+
+		useEffect(() => {
+			getBreeds();
+		}, [dogs]);
 
 
     return (
@@ -154,7 +155,7 @@ const AllDogs: React.FC = () => {
 									<Select
 										value={filterBreed}
 										label="Filter by breed"
-										onChange={handleChange}
+										onChange={handleChangeBreed}
 									>
 										{listOfBreeds.map((breed) => (
 											<MenuItem value={breed}>{breed}</MenuItem>
@@ -188,7 +189,8 @@ const AllDogs: React.FC = () => {
 					</Box>
 					<Box>
 						{dogs.map((dog) => (
-							<Card sx={{ maxWidth: 500, mb: 2, width: '600px' }}>
+							// <DogCard dog={dog} key={dog.id}/>         *** DogCard as a separate component doesn't display the dog's age, breed and zip_code in the card.
+							<Card sx={{ maxWidth: 500, mb: 2, width: '600px' }} key={dog.id}>
 								<CardMedia 
 									sx={{ height: 400 }}
 									image={`${dog.img}`}
