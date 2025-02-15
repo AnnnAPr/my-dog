@@ -13,7 +13,6 @@ function App() {
 					<Route path="/" element={<LoginPage />} />
 					<Route path="/home" element={<HomePage />} />
 					<Route path="/search" element={<SearchComponent onSearch={(query) => console.log(query)} />} />
-					<Route path="/" element={<Navigate replace to="/login" />} />
 				</Routes>
         </Router>
 			{/* <LoginPage /> */}
