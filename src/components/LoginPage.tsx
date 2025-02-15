@@ -87,7 +87,7 @@ const LoginPage: React.FC = () => {
 						color='primary' 
 						variant='contained' 
 						fullWidth sx={{mt: 1}}
-						disabled={!isNameEntered || !isEmailEntered}
+						disabled={!isNameEntered && !isEmailEntered}
 					>
 						Sign In
 					</Button>
