@@ -120,7 +120,7 @@ const AllDogs: React.FC = () => {
 
 		useEffect(() => {
 			getBreeds();
-		}, [dogs, getBreeds]);
+		}, [dogs]);
 
 
     return (
