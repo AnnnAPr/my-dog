@@ -6,21 +6,21 @@ import { baseUrl} from './common';
 
 const LoginPage: React.FC = () => {
 
-	// const baseUrl = ' https://frontend-take-home-service.fetch.com'
 	const navigate = useNavigate();
 	const [name, setName] = useState<string>('');
 	const [email, setEmail] = useState<string>('');
 	const [isNameEntered, setIsNameEntered] = useState(false);
-	const [isEmailEntered, setIsEmailEntered] = useState(false);
+	const [isEmailValid, setIsEmailValid] = useState(false);
+	const valid = require("validator");
 
 	const handleNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setName(e.target.value);
-		setIsNameEntered(!isNameEntered);
+		setIsNameEntered(true);
 	}
 
 	const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
 		setEmail(e.target.value);
-		setIsEmailEntered(!isEmailEntered);
+		setIsEmailValid(valid.isEmail(e.target.value))
 	}
 
 	const handleOnSubmit = async (e: any) => {
@@ -81,13 +81,14 @@ const LoginPage: React.FC = () => {
 						fullWidth 
 						sx={{mb: 2}}
 						onChange={handleEmailChange}
+						type='email'
 					/>
 					<Button 
 						type='submit' 
 						color='primary' 
 						variant='contained' 
 						fullWidth sx={{mt: 1}}
-						disabled={!isNameEntered && !isEmailEntered}
+						disabled={!isNameEntered || !isEmailValid}
 					>
 						Sign In
 					</Button>

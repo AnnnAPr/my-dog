@@ -9,7 +9,7 @@ Welcome to finder dog "my-dog" application.
 
 # The application features:
 
-- The first page of app is the 'Sign in" page where user is required enter **Name** and **Email** to be authenticated. The "Sign in" button is disabled until required fields will be provided.
+- The first page of app is the 'Sign in" page where user is required enter **Name** and **Email** to be authenticated. The "Sign in" button is disabled until required fields will be provided with valid email.
 
 - After authentication user will be redirected to **Home** page where they could see paginated list of the available dogs. Each dog is displayed as a card with picture of the dog, name and other information.
 

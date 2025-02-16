@@ -2,10 +2,9 @@ import React, { useState, ChangeEvent, useEffect } from 'react';
 import TextField from '@mui/material/TextField';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
-import { Box, Button, Card, CardContent, CardMedia, List, ListItem, ListItemText, Typography } from '@mui/material';
+import { Box, Button, Link, Card, CardContent, CardMedia, List, ListItem, ListItemText, Typography } from '@mui/material';
 import { Dog } from './common';
 import SignOut from './SignOut';
-
 
 interface SearchProps {
   onSearch: (query: string) => void;
@@ -58,7 +57,7 @@ const SearchComponent: React.FC<SearchProps> = ({ placeholder = 'Search by dog i
   return (
 		<Box sx={{mt: 2, height: '50px'}}>
 			<SignOut />
-			<Box sx={{display: 'flex', justifyContent: 'center'}}>
+			<Box sx={{display: 'flex', justifyContent: 'center', mb: 3}}>
 				<TextField
 					label={placeholder}
 					variant="outlined"
@@ -81,6 +80,7 @@ const SearchComponent: React.FC<SearchProps> = ({ placeholder = 'Search by dog i
 					Search
 				</Button>
 			</Box>
+			<Link href="/ids" underline="always" target="_blank" sx={{ ml: '45%', fontWeight: 'bold'}}>Dog Id Examples</Link>
 			<Box sx={{display: 'flex', flexDirection: 'column', ml: '37%'}}>
 				{dogs.map((dog) => (
 					// <DogCard dog={dog} />

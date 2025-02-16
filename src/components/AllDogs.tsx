@@ -19,10 +19,8 @@ import {
 	Tooltip 
 } from '@mui/material';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import { baseUrl } from "./common";
+import { baseUrl, fetchDogIds } from "./common";
 // import DogCard from "./DogCard.tsx";
-
-
 
 const AllDogs: React.FC = () => {
 
@@ -43,7 +41,6 @@ const AllDogs: React.FC = () => {
 		}
 
 		const sorDogsByBreed = () => {
-			console.log('inside sort dogs before sort:', dogs);
 			if (!isAscending) {
 				let sortedDogs = dogs.sort((a, b) => a.breed.localeCompare(b.breed));
 				setDogs(sortedDogs);
@@ -56,16 +53,7 @@ const AllDogs: React.FC = () => {
 
 		const fetchData = async (page: number) => {
 			try {
-				const idsResponse = await fetch(`${baseUrl}/dogs/search?size=25&from=${(page - 1) * 25}`, {
-					method: 'GET',
-					credentials: "include",
-					headers: {
-						'Content-Type': 'application/json'
-					},
-				});
-
-				const data = await idsResponse.json();
-				const ids = data.resultIds
+				const ids = await fetchDogIds(page);
 				
 				const currentDogs = await fetch(`${baseUrl}/dogs`, {
 					method: 'POST',
