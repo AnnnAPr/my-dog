@@ -75,6 +75,7 @@ const AllDogs: React.FC = () => {
 			setPage(newPage);
 			fetchData(newPage);
 			setIsAscending(true);
+			setFilterBreed('');
 		};
 
 		const handleChangeBreed = (event: SelectChangeEvent) => {
