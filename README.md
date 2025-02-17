@@ -11,9 +11,7 @@ Welcome to finder dog "my-dog" application.
 
 - [Deployed app](https://find-the-friends.vercel.app/)
 
-- **Demo**
-
-<video controls src="Find-the-friends.mp4" title="My friends"></video>
+- **Demo**: https://youtu.be/KgibOAN9GOQ
 
 - The first page of app is the 'Sign in" page where user is required enter **Name** and **Email** to be authenticated. The "Sign in" button is disabled until required fields will be provided with valid email.
 
